@@ -27,7 +27,7 @@ e.g., the `bin/.heap` subdirectory of the SML/NJ distribution.
 `smlnjtrans` can be invoked using the shell script of the same name
 in the source directory.  This script should be edited as is
 explained in the script, and should then be moved to an appropriate
-bin directory (e.g., `/usr/local/bin`).
+`bin` directory (e.g., `/usr/local/bin`).
 
 See the sub-directory `example` for an example of how `smlnjtrans` can be
 used.
