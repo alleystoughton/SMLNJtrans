@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# start smlnjtrans
+
+# edit the following line to set heapdir to the directory where
+# smlnjtrans's heap image will reside
+
+heapdir=/usr/local/smlnj/bin/.heap
+
+# set sml to SML/NJ executable
+
+sml=/usr/local/bin/sml
+
+exec $sml @SMLload=$heapdir/smlnjtrans-heap @SMLcmdname=$0 "$@"

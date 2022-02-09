@@ -1,0 +1,5 @@
+val x = 4; (* \hello{there} ~*)
+val y = x + 1;
+val z = "-\\{hello}~*\n";
+print z;
+print "==\n";

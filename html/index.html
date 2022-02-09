@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet type="text/css" href="style.css"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<title>A Standard ML Program for Generating SML/NJ Transcripts
+in LaTeX</title>
+<link type="text/css" rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+<h1>A Standard ML Program for Generating SML/NJ Transcripts
+in LaTeX</h1>
+
+<hr/>
+
+<h2>Description</h2>
+
+<p><tt>SMLNJtrans</tt> is a Standard ML program for generating SML/NJ
+transcripts in LaTeX.  It makes use of the <tt>Unix</tt> structure
+of the Standard ML Basis Library, and so isn't currently available
+for Windows.</p>
+
+<p>Under Unix/Linux/Mac OS X, it is invoked as follows:</p>
+<pre>
+  smlnjtrans <em>SMLNJ</em> <em>PROMPTS</em> <em>FILE</em>...
+</pre>
+<p><em>SMLNJ</em> should be an SML/NJ executable, <em>PROMPTS</em>
+should be a (possibly empty) string of prompt characters, and
+<em>FILE</em>... should be existing files of SML code
+(optionally annotated with overlay counters &#8212; see below).
+</p>
+
+<p><em>SMLNJ</em> need not not be fully qualified; if necessary, it is
+fully qualified using the value of the user's <tt>PATH</tt>
+environment variable.  <em>SMLNJ</em> should be a shell script that
+invokes an SML/NJ heap image.</p>
+
+<p>The characters of <em>PROMPTS</em>, which must be printable,
+non-white space characters, plus the characters "-" and "=", must be
+<em>SMLNJ</em>'s prompt characters.  Whenever <em>SMLNJ</em>, or the SML
+code in the files, prompts for input, it must do so by printing, at
+the beginning of a line, one of the prompt characters followed by a
+single blank.  Furthermore, <em>SMLNJ</em>, or the SML code in the files,
+must never begin a line with a prompt character followed by a blank,
+when it is not prompting for input.</p>
+
+<p><tt>SMLNJtrans</tt> runs <em>SMLNJ</em> as a child process.  It
+discards the output from <em>SMLNJ</em> until it receives
+<em>SMLNJ</em>'s first prompt.  Then, <tt>smlnjtrans</tt>
+enters its main loop, in which it processes the files, in order.</p>
+
+<p>When it processes file, <em>FILE</em>, <tt>smlnjtrans</tt>
+produces a LaTeX transcript, <em>FILE</em><tt>.tex</tt>, of the
+result of feeding the lines of <em>FILE</em> to <em>SMLNJ</em>.
+The transcript is indented to <tt>\leftmargini</tt>, and is typeset at
+size <tt>\small</tt>, in typewriter font.  The text of
+<em>FILE</em> is set in upright shape, whereas the output of
+<em>SMLNJ</em> is set in slanted shape.  The transcript may be
+included in a larger document with the command
+<tt>\input{</tt><em>FILE</em><tt>.tex}</tt>.</p>
+
+<p>If file <em>FILE</em> is annotated with an overlay counter, and so has the
+form <em>FIL</em><tt>:</tt><em>CTR</em> where <em>CTR</em> is a numeral, then the LaTeX generated for
+<em>FILE</em> will use the Seminar document class's cumulative
+overlays feature to single-step through the evaluation
+of <em>FIL</em>.  The overlay corresponding to the first input prompt
+will be <em>CTR</em>.
+
+<h2>Example</h2>
+
+<p>Suppose that <tt>foo</tt>, <tt>goo</tt> and <tt>hoo</tt> are
+the files</p>
+<pre>
+  val x = 4; (* /hello{there} ~*)
+  val y = x + 1;
+  val z = "-\\{hello}~*\n";
+  print z;
+  print "==\n";
+</pre>
+<p>and</p>
+<pre>
+  fun f nil       = 0
+    | f (_ :: xs) = 1 + f xs;
+</pre>
+<p>and</p>
+<pre>
+  f [1, 2, 3, x];
+  f nil;
+</pre>
+<p>respectively.  Running the command</p>
+<pre>
+  smlnjtrans sml "" foo goo hoo
+</pre>
+<p>produces the files <tt>foo.tex</tt>, <tt>goo.tex</tt> and
+<tt>hoo.tex</tt>.  Let <tt>example.tex</tt> be the file</p>
+<pre>
+  \documentclass[11pt]{article}
+
+  \begin{document}
+  Some initial text that repeats that repeats that repeats that repeats
+  that repeats that repeats that repeats that repeats that repeats.
+  \input{foo.tex}
+  Some more text.
+  \input{goo.tex}
+
+  Yet some more.
+  \input{hoo.tex}
+  The final text.
+  \end{document}
+</pre>
+<p>Running the commands</p>
+<pre>
+  latex example.tex
+  dvips -Ppdf example.dvi -o example.ps
+  ps2pdf example.ps
+</pre>
+<p>produces <a href="example.pdf"><tt>example.pdf</tt></a>.</p>
+
+<h2>Downloading</h2>
+
+<p><tt>SMLNJtrans</tt>'s distribution, including source, documentation
+and an example, is available as a
+<a href="smlnjtrans.tar.gz">compressed tarball</a>.</p>
+
+<hr class="after"/>
+
+<address>
+<a href="http://alleystoughton.us">Alley Stoughton</a>
+(<a href="mailto:alley.stoughton@icloud.com">alley.stoughton@icloud.com</a>)
+</address>
+
+<table class="validate">
+<tr valign="middle">
+<td>
+<a href="http://validator.w3.org/check/referer">
+<img src="valid-xhtml10.png" alt="Valid XHTML 1.0!"/></a>
+</td>
+<td>&nbsp;</td>
+<td>
+<a href="http://jigsaw.w3.org/css-validator/check/referer">
+<img src="vcss.png" alt="Valid CSS!"/>
+</a>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# build an SML/NJ heap image for smlnjtrans
+
+ml-build smlnjtrans.cm Main.main smlnjtrans-heap

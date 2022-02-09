@@ -1,0 +1,52 @@
+.TH smlnjtrans 1 "November 12, 2013"
+.SH NAME
+smlnjtrans \- A Standard ML program for generating SML/NJ transcripts
+in LaTeX
+.SH SYNOPSIS
+\fBsmlnjtrans\fP \fISMLNJ PROMPTS FILE\fP...
+.SH DESCRIPTION
+
+\fISMLNJ\fP should be an SML/NJ executable, \fIPROMPTS\fP should be a
+(possibly empty) string of prompt characters, and \fIFILE\fP...
+should be existing files of SML code (optionally annotated with
+overlay counters - see below).
+
+\fISMLNJ\fP need not not be fully qualified; if necessary, it is fully
+qualified using the value of the user's \fBPATH\fP environment variable.
+\fISMLNJ\fP should be a shell script that invokes an SML/NJ heap image.
+
+The characters of \fIPROMPTS\fP, which must be printable, non-white space
+characters, plus the characters "-" and "=", must be \fISMLNJ\fP's prompt
+characters.  Whenever \fISMLNJ\fP, or the SML code in the files, prompts
+for input, it must do so by printing, at the beginning of a line,
+one of the prompt characters followed by a single blank.
+Furthermore, \fISMLNJ\fP, or the SML code in the files, must never begin
+a line with a prompt character followed by a blank, when it is not
+prompting for input.
+
+\fBSMLNJtrans\fP runs \fISMLNJ\fP as a child process.  It discards the output
+from \fISMLNJ\fP until it receives \fISMLNJ\fP's first prompt.  Then,
+\fBsmlnjtrans\fP enters its main loop, in which it processes the files,
+in order.
+
+When it processes file, \fIFILE\fP, \fBsmlnjtrans\fP produces a LaTeX
+transcript, \fIFILE\fP\fB.tex\fP, of the result of feeding the lines
+of \fIFILE\fP to \fISMLNJ\fP.  The transcript is indented to
+\fB\\leftmargini\fP, and is typeset at size \fB\\small\fP, in typewriter font.
+The text of \fIFILE\fP is set in upright shape, whereas the output of
+\fISMLNJ\fP is set in slanted shape.  The transcript may be included
+in a larger document with the command \fB\\input{\fP\fIFILE\fP\fB.tex}\fP.
+
+If file \fIFILE\fP is annotated with an overlay counter, and so has
+the form \fIFIL\fP\fB:\fP\fICTR\fP where \fICTR\fP is a numeral, then
+the LaTeX generated for \fIFILE\fP will use the Seminar document
+class's cumulative overlays feature to single-step through the
+evaluation of \fIFIL\fP.  The overlay corresponding to the first input
+prompt will be \fICTR\fP.
+.SH AUTHOR
+
+.nf
+Alley Stoughton
+alley.stoughton@icloud.com
+alleystoughton.us/smlnjtrans
+.fi

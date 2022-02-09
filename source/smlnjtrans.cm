@@ -1,0 +1,13 @@
+(* smlnjtrans.cm *)
+
+(* CM description file for smlnjtrans *)
+
+Library
+
+  source(-)
+
+is
+  
+  $/basis.cm
+
+  smlnjtrans.sml

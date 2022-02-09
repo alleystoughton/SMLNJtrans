@@ -1,0 +1,49 @@
+h1, h2, h3, h4, h5 { font-family: serif; }
+
+p { font-family: serif; }
+
+body
+  { color: black; background-color: #f0e0a0; font-family: serif; }
+
+pre { color: black; background: #99ff99; font-family: monospace; }
+
+a img
+  { color: #f0e0a0; }
+
+a:active
+  { color: blue;
+    background-color : #f0e0a0;
+    font-family: serif;
+    text-decoration: none }
+
+a:link
+  { color: blue;
+    background-color : #f0e0a0;
+    font-family: serif;
+    text-decoration: none }
+
+a:visited
+  { color: blue;
+    background-color : #f0e0a0;
+    font-family: serif;
+    text-decoration: none }
+
+a:hover
+  { color: red;
+    background-color : #f0e0a0;
+    font-family: serif;
+    text-decoration: none }
+
+h1.top { margin-top: 0em; }
+h1.bottom { margin-bottom: 0em; }
+h1.both { margin-top: 0em; margin-bottom: 0em; }
+h2.top { margin-top: 0em; }
+h2.bottom { margin-bottom: 0em; }
+h2.both { margin-top: 0em; margin-bottom: 0em; }
+hr.after { margin-bottom: 1em; }
+hr.before { margin-top: 1em; }
+hr.both { margin-top: 1em; margin-bottom: 1em; }
+table.indent { margin-left: .9em; }
+td.large { font-size: 150%; }
+table.narrow { width: 25em; }
+table.validate { margin-top: .5em; }

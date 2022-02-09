@@ -1,0 +1,2 @@
+fun f nil       = 0
+  | f (_ :: xs) = 1 + f xs;
