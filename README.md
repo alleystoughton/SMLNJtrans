@@ -13,7 +13,7 @@ This program is configured to be compiled with
 [SML/NJ](http://smlnj.org).
 
 To compile the program, change directory to `source`, and then run the
-build shell `script`.  This will produce an SML/NJ heap image
+`build` shell script.  This will produce an SML/NJ heap image
 called
 
 ```
