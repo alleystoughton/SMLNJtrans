@@ -3,9 +3,11 @@ smlnjtrans: A Standard ML program for generating SML/NJ transcript in LaTeX
 
 [SMLNJtrans](https://alleystoughton.us/smlnjtrans/) is a [Standard
 ML](https://smlfamily.github.io) program for generating
-[SML/NJ](http://smlnj.org) transcripts in LaTeX. It makes use of the
-`Unix` structure of the Standard ML Basis Library, and so isn't
-currently available for Windows.
+[SML/NJ](http://smlnj.org) transcripts in
+[LaTeX](https://www.latex-project.org). It makes use of the `Unix`
+structure of the [Standard ML Basis
+Library](https://smlfamily.github.io/Basis/), and so isn't currently
+available for Windows.
 
 This program is configured to be compiled with
 [SML/NJ](http://smlnj.org).
